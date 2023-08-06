@@ -50,9 +50,7 @@ Resources:
       - x86_64
       Policies:
         DynamoDBCrudPolicy:
-          TableName: [!Ref DynamoDBTableDev, dynamodb-table2]
-        DynamoDBCrudPolicy:
-          TableName: dynamodb-table2
+          TableName: *
       Environment:
         Variables:
           TABLE_NAME: !FindInMap [StageMap, !Ref StageName, stage]
