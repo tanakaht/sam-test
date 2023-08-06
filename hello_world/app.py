@@ -1,6 +1,12 @@
 import json
-
+import boto3
+import os
 # import requests
+
+if os.environ["AWS_SAM_LOCAL"]:
+    dynamodb_client = boto3.client('dynamodb', endpoint_url="http://dynamodb-local:8000")
+else:
+    dynamodb_client = boto3.client('dynamodb')
 
 
 def lambda_handler(event, context):
@@ -32,11 +38,13 @@ def lambda_handler(event, context):
     #     print(e)
 
     #     raise e
+    dynamodb_client.put_item(TableName='dynamodb-table2', Item={'id': {'S': '11'}, 'date': {'N': "1"}, 'score': {'N': "100"}})
+    dynamodb_client.put_item(TableName='dynamodb-table2', Item={'id': {'S': '21'}, 'date': {'N': "2"}, 'score2': {'N': "200"}})
 
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "hello world23",
+            "message": f"hello world23{os.environ['TABLE_NAME']}",
             # "location": ip.text.replace("\n", "")
         }),
     }

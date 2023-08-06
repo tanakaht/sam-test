@@ -24,6 +24,10 @@ watch = true
 
 [default.local_start_api.parameters]
 warm_containers = "EAGER"
+docker_network = "lambda-local"
+parameter_overrides = "StageName=local"
 
 [default.local_start_lambda.parameters]
 warm_containers = "EAGER"
+docker_network = "lambda-local"
+parameter_overrides = "StageName=local"
