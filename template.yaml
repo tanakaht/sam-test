@@ -50,7 +50,7 @@ Resources:
       - x86_64
       Policies:
         DynamoDBCrudPolicy:
-          TableName: *
+          TableName: "*"
       Environment:
         Variables:
           TABLE_NAME: !FindInMap [StageMap, !Ref StageName, stage]
