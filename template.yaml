@@ -46,7 +46,6 @@ Resources:
       AutoPublishAlias: dev
       Handler: app.lambda_handler
       Runtime: python3.9
-      Timeout: 3000
       Architectures:
       - x86_64
       Policies:
