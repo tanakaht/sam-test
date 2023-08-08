@@ -5,8 +5,8 @@ info:
   description: Lambda API for mahjong-account-app-backend(user management, rules, and matches).
 paths:
   /hello:
-    post:
-      summary: User Login
+    get:
+      summary: hw
       responses:
         200:
           description: 'success'
