@@ -3,10 +3,11 @@ import boto3
 import os
 # import requests
 
-if os.environ["AWS_SAM_LOCAL"]:
-    dynamodb_client = boto3.client('dynamodb', endpoint_url="http://dynamodb-local:8000")
-else:
-    dynamodb_client = boto3.client('dynamodb')
+#if os.environ["AWS_SAM_LOCAL"]:
+ #   dynamodb_client = boto3.client('dynamodb', endpoint_url="http://dynamodb-local:8000")
+#else:
+#    dynamodb_client = boto3.client('dynamodb')
+dynamodb_client = boto3.client('dynamodb')
 
 
 def lambda_handler(event, context):
