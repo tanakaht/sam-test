@@ -101,13 +101,13 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !FindInMap [StageMap, !Ref StageName, stage]
-      Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: "/hello"
-            Method: get
-            RestApiId: !Ref RestApi
+      #Events:
+        #HelloWorld:
+          #Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          #Properties:
+            #Path: "/hello"
+            #Method: get
+            #RestApiId: !Ref RestApi
   DynamoDBTableDev:
     Type: AWS::DynamoDB::Table
     Condition: IsDev
@@ -155,7 +155,8 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/${UserPool.Arn}/"
+    Value: !Sub "arn:aws:cognito-idp:ap-northeast-1:${AWS::AccountId}:userpool/${UserPool}"
+    #Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/${UserPool.Arn}/"
   HelloWorldFunction:
     Description: Hello World Lambda Function ARN
     Value: !GetAtt HelloWorldFunction.Arn
