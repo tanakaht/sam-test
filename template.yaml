@@ -58,6 +58,11 @@ Resources:
           RequireSymbols: false
           RequireUppercase: true
       MfaConfiguration: "OFF"
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: "hte-test-cognito-domain"
+      UserPoolId: !Ref UserPool
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
@@ -144,7 +149,7 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/${UserPool.Arn}"
+    Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/${UserPool}/${UserPoolClient}"
   HelloWorldFunction:
     Description: Hello World Lambda Function ARN
     Value: !GetAtt HelloWorldFunction.Arn
