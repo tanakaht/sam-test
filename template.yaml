@@ -63,7 +63,7 @@ Resources:
   UserPoolDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
-      Domain: "hte-test-cognito-domain"
+      Domain: "hte-test-domain"
       UserPoolId: !Ref UserPool
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
