@@ -101,13 +101,14 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME: !FindInMap [StageMap, !Ref StageName, stage]
-      #Events:
-        #HelloWorld:
-          #Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          #Properties:
-            #Path: "/hello"
-            #Method: get
-            #RestApiId: !Ref RestApi
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: "/hello"
+            Method: get
+            RestApiId: !Ref RestApi
+
   DynamoDBTableDev:
     Type: AWS::DynamoDB::Table
     Condition: IsDev
