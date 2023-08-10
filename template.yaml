@@ -2,7 +2,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
   HelloWorldApiGatewayApi
-
   Sample SAM Template for HelloWorldApiGatewayApi
 
 Parameters:
@@ -72,6 +71,12 @@ Resources:
       RefreshTokenValidity: 7
       UserPoolId:
         Ref: UserPool
+  LambdaAddPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt HelloWorldFunction.Arn
+      Principal: cognito-idp.amazonaws.com
   RestApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -150,7 +155,7 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/${UserPool}/${UserPoolClient}"
+    Value: !Sub "https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/${UserPool.Arn}/"
   HelloWorldFunction:
     Description: Hello World Lambda Function ARN
     Value: !GetAtt HelloWorldFunction.Arn
