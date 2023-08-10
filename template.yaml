@@ -58,6 +58,8 @@ Resources:
           RequireSymbols: false
           RequireUppercase: true
       MfaConfiguration: "OFF"
+      LambdaConfig:
+        PostConfirmation: !GetAtt HelloWorldFunction.Arn
   UserPoolDomain:
     Type: AWS::Cognito::UserPoolDomain
     Properties:
